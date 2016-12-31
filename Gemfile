@@ -17,7 +17,9 @@ gem 'puma'
 gem 'bootstrap-sass'
 
 gem 'acts_as_list'
+gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'simple_form'
 
 

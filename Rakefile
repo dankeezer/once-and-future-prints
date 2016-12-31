@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-ShainaGates::Application.load_tasks
+OnceAndFuturePrints::Application.load_tasks

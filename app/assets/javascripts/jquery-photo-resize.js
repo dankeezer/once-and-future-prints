@@ -12,30 +12,27 @@
 */
 
 (function ($) {
-
-        $.fn.photoResize = function (options) {
-
-                var element        = $(this), 
-                        defaults = {
-                    bottomSpacing: 0
-                        };
+  $.fn.photoResize = function (options) {
+    var element = $(this), 
+    defaults = {
+      bottomSpacing: 0
+    };
                 
-                $(element).load(function () {
-                        updatePhotoHeight();
+    $(element).load(function () {
+      updatePhotoHeight();
 
-                        $(window).bind('resize', function () {
-                                updatePhotoHeight();
-                        });
-                });
+      $(window).bind('resize', function () {
+        updatePhotoHeight();
+      });
+    });
 
-                options = $.extend(defaults, options);
+    options = $.extend(defaults, options);
 
-                function updatePhotoHeight() {
-                        var o = options, 
-                                photoHeight = $(window).height();
+    function updatePhotoHeight() {
+      var o = options, 
+      photoHeight = $(window).height();
 
-                        $(element).attr('height', photoHeight - o.bottomSpacing);
-                }
-        };
-
+      $(element).attr('height', photoHeight - o.bottomSpacing);
+    }
+  };
 }(jQuery));

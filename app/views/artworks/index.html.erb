@@ -1,133 +1,5 @@
-<%= javascript_include_tag "http://code.jquery.com/jquery-latest.min.js" %>
-<%= javascript_include_tag "http://code.jquery.com/ui/1.10.3/jquery-ui.js" %>
-<%= javascript_include_tag "jquery-photo-resize" %>
-
-<style type = "text/css">
-
-body {
-  display: block;
-  margin: 0px;
-  overflow: hidden;
-  -webkit-overflow-scrolling: hidden;
-  background-color: #aeaeae;
-}
-
-table {
-  border-spacing: 0px !important;
-}
-
-tr {
-}
-
-td {
-  padding: 0px;
-  border-spacing: 0px !important;
-  margin: 0px; 
-  vertical-align: top;
-}
-
-img {
-  cursor: pointer;
-}
-
-.overlay {
-  position: relative;
-  /*overflow-x: hidden;*/
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
-#status { 
-  position: fixed;
-  z-index: 2; 
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 10pt;
-  font-weight: 300;
-  letter-spacing: 2px;
-  padding: 3px;
-  padding-left: 5px;
-  display: none;
-}
-
-#caption {
-  z-index: 1;
-  color: #575757;
-  position: fixed;
-  border-bottom: 3px solid #575757;
-  top: -27px;
-  background-color: #FFF;
-  margin-bottom: 3px;
-  opacity: 0;
-}
-
-#inner {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 10pt;
-  font-weight: 300;
-  padding: 3px;
-  padding-left: 7px;
-  white-space:pre;
-}
-
-#bottomMask {
-  z-index: 1;
-  position: fixed;
-  bottom: -3;
-  height: 3px;
-  width: 100%;
-  background-color: #575757;;
-  margin-bottom: 3px;
-  opacity: 0;
-}
-
-h4, a:link, a:visited, a:hover, a:active {
-  color: #FFF;
-  letter-spacing: 2px;
-  font-weight: 300;
-  font-size: 1em;
-  line-height: 1em;
-  margin: 0;
-
-  text-decoration: none !important;
-}
-
-h5, a:link, a:visited, a:hover, a:active {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 10pt;
-  font-weight: 300;
-  letter-spacing: 2px;
-  color: #FFF;
-  display: inline;
-}
-
-.nav a:link{
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 10pt;
-  font-weight: 300;
-  letter-spacing: 2px;
-  color: #000;
-  display: inline !important;
-  margin: auto !important;
-}
-
-#lightbox {
-  z-index: -5;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  opacity: 0;
-}
-
-</style>
-
-<body>
-
   <div id="status">
     <h6 class="nav" style="margin:auto">
-      <a href="#exhibitions">exhibitions</a> | 
       <a href="#contact">contact</a>
     </h6>
   </div>
@@ -145,7 +17,7 @@ h5, a:link, a:visited, a:hover, a:active {
           <td>
             <% position = (artwork.position == 9999 ? Artwork.all.index(artwork) : artwork.position) %>
             <%= content_tag(:div, id: position.to_s, style: "z-index:-4") do %>          
-              <%= link_to(filepicker_image_tag(artwork.filepicker_url), lightbox_artworks_path(artwork), remote: true, method: :get) %>
+              <%= link_to(filepicker_image_tag(artwork.filepicker_url, {}, class: "artwork"), lightbox_artworks_path(artwork), remote: true, method: :get) %>
             <% end %>
           </td>
         <% end %>
@@ -161,6 +33,38 @@ h5, a:link, a:visited, a:hover, a:active {
 
 
 <script>
+
+
+$(document).ready(function() {
+  $("#statement").width($(window).width());
+  $("#exhibitions").width($(window).width());
+  $("#contact").width($(window).width());
+});
+
+$(document).ready(function() {
+  $(".artwork").photoResize({
+    bottomSpacing:"0"
+  });
+});
+
+$(document).ready(function() {
+  var oldScrollTop = $('.overlay').scrollTop();
+  var oldScrollLeft = $('.overlay').scrollLeft();
+
+  $('.overlay').scroll(function () { 
+    if(oldScrollTop == $('.overlay').scrollTop()) {
+        $('#status').fadeIn();
+    }
+    else {
+        $('#current').html('Vertical');
+    }
+    oldScrollTop = $('.overlay').scrollTop();
+    oldScrollLeft = $('.overlay').scrollLeft();
+  });
+});
+
+
+
 $(function() {
     $('#status a').bind('click',function(event){
         var $anchor = $(this);
@@ -174,4 +78,6 @@ $(function() {
         event.preventDefault();
     });
 });
+
+
 </script>

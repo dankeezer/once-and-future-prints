@@ -1,4 +1,4 @@
-ShainaGates::Application.routes.draw do
+OnceAndFuturePrints::Application.routes.draw do
 
   resources :artworks do
     collection do
