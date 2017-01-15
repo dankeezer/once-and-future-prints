@@ -14,5 +14,6 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery-photo-resize
+//= require artworks
 //= require_self
 //= require_tree .
