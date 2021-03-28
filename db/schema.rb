@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20160808002125) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "artworks", force: true do |t|
+  create_table "artworks", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.string   "filepicker_url"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20160808002125) do
     t.integer  "position",       default: 9999
   end
 
-  create_table "exhibitions", force: true do |t|
+  create_table "exhibitions", force: :cascade do |t|
     t.string   "name"
     t.datetime "starts_at"
     t.datetime "ends_at"

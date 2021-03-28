@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.6.6'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.2'
+gem 'rails', '4.2.11.3'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -12,15 +12,16 @@ gem 'protected_attributes'
 gem 'jbuilder', '~> 2.0'
 gem 'filepicker-rails'
 gem 'pg'
-gem 'puma'
+gem 'puma', '~> 3.7'
 
 gem 'bootstrap-sass'
 
 gem 'acts_as_list'
-gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
 gem 'simple_form'
+# gem 'therubyracer', platforms: :ruby
+gem 'jquery-ui-rails'
+gem 'responders', '~> 2.0'
 
 
 group :doc do
